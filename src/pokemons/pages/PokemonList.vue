@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import pokemonApi from '../api/pokemonApi';
-import type { PokemonListResponse } from '../interfaces/pokemons-list-response';
+import {usePokemons} from '../composables/usePokemons'
 
-pokemonApi.get<PokemonListResponse>('/pokemon?limit=45')
-.then( resp => console.log( resp.data.results[0].url));
-
+const {count,pokemons, isLoading} = usePokemons();
 </script>
 
 <template>
   <div>
-    <h1>Pokemon Lista</h1>   
+    <h1>Pokemon Lista - ({{ count }})</h1>   
+
+    <h3 v-if="isLoading">Cargando</h3>
+
+    <ul>
+      <li v-for="pokemon in pokemons" :key="pokemon.id">
+        {{ pokemon.name }}
+      </li>
+    </ul>
   </div>
 </template>

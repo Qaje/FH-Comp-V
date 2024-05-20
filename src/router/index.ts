@@ -1,8 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 //import HomeView from '@/shared/views/HomeView.vue'
-import HelloView from '@/components/HelloWorld.vue'
-import CounterView from '@/counter/views/CounterView.vue'
-//import PokeLayout from '@/pokemons/layouts/PokemonLayout.vue'
+
 import { pokemonRoute } from '@/pokemons/router'
 
 const router = createRouter({
@@ -11,7 +9,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HelloView
+      component: () => import('@/components/HelloWorld.vue')
     },
     {
       path: '/about',
@@ -21,7 +19,7 @@ const router = createRouter({
     {
       path: '/counter',
       name: 'counter',
-      component: CounterView
+      component: () => import('@/counter/views/CounterView.vue')
     },
     {
       ...pokemonRoute,

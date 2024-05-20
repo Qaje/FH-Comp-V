@@ -2,9 +2,9 @@
 import type { RouterLink } from './../../../../router/list-routes'
 
 interface Props {
-  title?: string
-  links: RouterLink[]
-  isSecondary?: false
+  title?: string,
+  links: RouterLink[],
+  isSecondary?: false,
 }
 
 withDefaults(defineProps<Props>(), {
@@ -19,7 +19,6 @@ withDefaults(defineProps<Props>(), {
 
       <span>{{ $props.title }}</span>
     </template>
-
     <RouterLink v-for="link of $props.links" :key="link.path" :to="link.path">
       {{ link.title }}
     </RouterLink>
